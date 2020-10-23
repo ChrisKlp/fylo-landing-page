@@ -1,0 +1,723 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+@mixin s-sm {
+    @media (min-width: 576px) {
+        @content;
+    }
+}
+
+@mixin s-md {
+    @media (min-width: 768px) {
+        @content;
+    }
+}
+
+@mixin s-lg {
+    @media (min-width: 992px) {
+        @content;
+    }
+}
+
+@mixin s-xlg {
+    @media (min-width: 1330px) {
+        @content;
+    }
+}
+
+$color-primary-1: hsl(243, 87%, 12%);
+$color-primary-2: hsl(238, 22%, 44%);
+$color-accent-1: hsl(224, 93%, 58%);
+$color-accent-2: hsl(170, 45%, 43%);
+$color-neutral-1: hsl(240, 75%, 98%);
+$color-neutral-2: hsl(0, 0%, 75%);
+$color-white: hsl(0, 0%, 100%);
+
+$font-text: 'Open Sans', sans-serif;
+$font-heading: 'Raleway', sans-serif;
+$color-shadow: rgba($color-neutral-2, 0.5);
+$container-sm: 57.6rem;
+$container-lg: 99.2rem;
+$container-xlg: 128rem;
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    position: relative;
+    font-family: $font-text;
+    font-size: 1.6rem;
+
+}
+
+// Components
+
+.logo {
+    width: 12rem;
+    height: 2.5rem;
+    background: url('../images/logo.svg') no-repeat 0 50% / contain;
+
+    @include s-sm {
+        width: 12rem;
+        height: 3.5rem;
+    }
+
+    @include s-lg {
+        width: 16.6rem;
+        height: 4.9rem;
+    }
+}
+
+.heading {
+    font: 700 2.5rem / 140% $font-heading;
+    color: $color-primary-1;
+
+    @include s-sm {
+        font-size: 3.2rem;
+    }
+
+    @include s-xlg {
+        font-size: 4rem;
+    }
+}
+
+.text {
+    font: 400 1.4rem / 150% $font-text;
+    color: $color-primary-1;
+
+    @include s-md {
+        font-size: 1.6rem;
+    }
+
+    @include s-xlg {
+        font-size: 1.8rem;
+        line-height: 140%;
+    }
+}
+
+.input {
+    padding: 1rem 1.5rem;
+    font: 400 1.2rem $font-text;
+    color: $color-primary-1;
+    border: 1px solid $color-primary-1;
+    border-radius: 0.4rem;
+    transition: border-color 0.3s;
+
+    &::placeholder {
+        color: $color-neutral-2;
+    }
+
+    &:focus {
+        outline: none;
+        border-color: $color-accent-1;
+    }
+
+    @include s-lg {
+        padding: 1.5rem 2rem;
+        width: 100%;
+        font-size: 1.3rem;
+    }
+}
+
+.button {
+    padding: 1.2rem 1.5rem;
+    font: 700 1.3rem $font-heading;
+    color: $color-white;
+    background-color: $color-accent-1;
+    border: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    box-shadow: 0 0.5rem 1rem $color-shadow;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: lighten($color-accent-1, 7%);
+    }
+
+    &:focus {
+        outline: none;
+        background-color: lighten($color-accent-1, 3%);
+    }
+
+    @include s-lg {
+        font-size: 1.3rem;
+        width: 20rem;
+        padding: 1.6rem 2rem;
+    }
+}
+
+.fancy-link {
+    position: relative;
+    padding: 0.5rem 0;
+    font-size: 1.3rem;
+    color: $color-accent-2;
+    text-decoration: none;
+
+    @include s-sm {
+        font-size: 1.6rem;
+    }
+
+    &:hover {
+        &::before {
+            transform: scaleY(2);
+        }
+    }
+
+    &::before {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 1px;
+        background-color: $color-accent-2;
+        content: '';
+        transition: transform 0.3s;
+    }
+
+    &::after {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 0.5rem;
+        width: 1.6rem;
+        height: 1.6rem;
+        background: url('../images/icon-arrow.svg') no-repeat;
+        content: '';
+    }
+}
+
+.testimonial {
+    margin: auto;
+    padding: 2rem;
+    max-width: 27.5rem;
+    color: $color-primary-1;
+    text-align: left;
+    border-radius: 0.6rem;
+    background-color: $color-white;
+    box-shadow: 0 0 2rem rgba($color-neutral-2, 0.5);
+
+    @include s-sm {
+        padding: 2.6rem 3.5rem;
+        max-width: 35.6rem;
+    }
+
+    @include s-lg {
+        margin: 0;
+    }
+
+    &__quote {
+        margin-bottom: 1.4rem;
+        font-size: 1rem;
+        line-height: 180%;
+        letter-spacing: 0.04rem;
+
+        @include s-sm {
+            font-size: 1.3rem;
+        }
+
+        &::before {
+            display: block;
+            margin-bottom: 0.5rem;
+            width: 1.3rem;
+            height: 1.2rem;
+            background: url('../images/icon-quotes.svg') no-repeat;
+            background-size: contain;
+            content: '';
+
+            @include s-sm {
+                width: 1.6rem;
+                height: 1.5rem;
+                margin-bottom: 0.8rem;
+            }
+        }
+    }
+
+    &__author {
+        display: grid;
+        grid: repeat(2, 1fr) / repeat(2, auto);
+        place-content: start;
+        gap: 0 1rem;
+    }
+
+    &__author-photo {
+        grid-area: 1 / 1 / 3 / 2;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        overflow: hidden;
+
+        @include s-sm {
+            width: 3.2rem;
+            height: 3.2rem;
+        }
+    }
+
+    &__author-name {
+        grid-area: 1 / 2 / 2 / 3;
+        font-size: 1rem;
+        font-weight: 700;
+
+        @include s-sm {
+            font-size: 1.2rem;
+        }
+    }
+
+    &__author-position {
+        grid-area: 2 / 2 / 3 / 3;
+        font-size: 0.7rem;
+
+        @include s-sm {
+            font-size: 0.9rem;
+        }
+    }
+}
+
+.social {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+
+    &__link {
+        display: grid;
+        place-content: center;
+        width: 3rem;
+        height: 3rem;
+        border: 1px solid $color-white;
+        border-radius: 50%;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: $color-white;
+
+            .social__icon {
+                color: $color-primary-1;
+            }
+        }
+    }
+
+    &__icon {
+        display: block;
+        color: $color-white;
+        width: 1.6rem;
+        height: 1.4rem;
+        transition: color 0.3s;
+    }
+}
+
+// Layout
+
+.header {
+    margin: auto;
+    padding: 2rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include s-lg {
+        padding: 5rem 2.5rem 2rem;
+        max-width: $container-xlg;
+    }
+
+    @include s-xlg {
+        padding: 6.5rem 0 2rem;
+    }
+
+    &__menu {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+
+        @include s-md {
+            gap: 5.8rem;
+        }
+    }
+
+    &__link {
+        font: 1.3rem 'Raleway', sans-serif;
+        text-decoration: none;
+        color: $color-primary-1;
+        transition: color 0.3s;
+
+        &:hover {
+            color: $color-accent-1;
+        }
+
+        @include s-sm {
+            font-size: 1.6rem;
+        }
+    }
+}
+
+.intro {
+    margin: auto;
+    padding: 7rem 2.5rem 9rem;
+
+    @include s-sm {
+        max-width: $container-sm;
+    }
+
+    @include s-lg {
+        max-width: $container-xlg;
+        display: grid;
+        grid: 'content image' auto / 1fr 1fr;
+        gap: 2rem;
+    }
+
+    @include s-xlg {
+        padding: 7rem 0 15rem;
+        gap: 0;
+    }
+
+    &__image {
+        margin-bottom: 2.5rem;
+        width: 100%;
+        padding-bottom: 75%;
+        background: url('../images/illustration-1.svg') no-repeat 50% 0 / contain;
+
+        @include s-lg {
+            grid-area: image;
+            margin: 0;
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        text-align: center;
+
+        @include s-lg {
+            padding-top: 7.5rem;
+            max-width: 60rem;
+            grid-area: content;
+            text-align: left;
+            gap: 2rem;
+        }
+    }
+
+    &__sign-up {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+
+        @include s-lg {
+            flex-direction: row;
+
+            input {
+                flex: auto;
+                max-width: 32rem;
+            }
+
+            button {
+                flex: auto;
+                max-width: 20rem;
+            }
+        }
+    }
+}
+
+.benefits {
+    padding: 6rem 2.5rem 8rem;
+    position: relative;
+    margin-top: 5.5rem;
+    background-color: $color-neutral-1;
+
+    @include s-xlg {
+        padding: 6rem 0 10.5rem;
+        margin-top: 11.5rem;
+    }
+
+    &::before {
+        position: absolute;
+        top: -5.5rem;
+        left: 0;
+        width: 100%;
+        height: 5.5rem;
+        background: url('../images/bg-curve-mobile.svg') no-repeat 50% 0 / 100% 100%;
+        content: '';
+
+        @include s-xlg {
+            background: url('../images/bg-curve-desktop.svg') no-repeat 50% 0 / 100% 100%;
+            top: -11.5rem;
+            height: 11.5rem;
+        }
+    }
+
+    &__container {
+        margin: auto;
+        @include s-sm {
+            max-width: $container-sm;
+        }
+
+        @include s-lg {
+            max-width: $container-xlg;
+            display: grid;
+            grid: 'content image' auto / 56% 1fr;
+            gap: 2rem;
+        }
+    }
+
+    &__image {
+        margin: auto;
+        margin-bottom: 7.7rem;
+        width: 100%;
+        padding-bottom: 75%;
+        background: url('../images/illustration-2.svg') no-repeat 50% 0 / contain;
+
+        @include s-sm {
+            max-width: $container-sm;
+        }
+
+        @include s-lg {
+            grid-area: image;
+            margin: 3rem auto;
+        }
+    }
+
+    &__content {
+        display: flex;
+        margin: auto;
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+
+        @include s-lg {
+            margin: 0;
+            grid-area: content;
+            text-align: left;
+        }
+    }
+
+    &__heading {
+        margin-bottom: 0.4rem;
+        font-size: 1.6rem;
+
+        @include s-sm {
+            font-size: 3.2rem;
+        }
+
+        @include s-xlg {
+            margin-bottom: 1.8rem;
+            font-size: 4rem;
+        }
+    }
+    &__text {
+        text-align: left;
+
+        @include s-lg {
+            max-width: 52rem;
+            font-size: 1.6rem;
+
+        }
+    }
+
+    &__fancy-link {
+        margin: 1.6rem 0;
+
+        @include s-xlg {
+            margin: 0;
+            margin-bottom: 3rem;
+        }
+
+    }
+
+    &__testimonial {
+        padding: 0 2.5rem;
+
+        @include s-lg {
+            padding: 0;
+        }
+    }
+}
+
+.promo {
+    padding: 5.5rem 4rem 6.4rem;
+    background-color: $color-primary-2;
+
+    @include s-lg {
+        padding: 10rem 2.5rem 8.5rem;
+    }
+
+    &__container {
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+
+        @include s-sm {
+            max-width: $container-sm;
+        }
+
+        @include s-lg {
+            max-width: $container-xlg;
+            display: grid;
+            grid: auto auto / 55% 1fr;
+            gap: 2rem;
+            text-align: left;
+        }
+    }
+
+    &__heading {
+        color: $color-white;
+        font-size: 1.8rem;
+
+        @include s-sm {
+            font-size: 3.2rem;
+        }
+
+        @include s-lg {
+            grid-area: 1 / 1 / 2 / 2;
+        }
+    }
+
+    &__text {
+        color: $color-neutral-1;
+
+        @include s-lg {
+            grid-area: 2 / 1 / 3 / 2;
+            max-width: 45rem;
+        }
+    }
+
+    &__sign-up {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        transform: scale(0.85);
+
+        @include s-sm {
+            transform: scale(1);
+        }
+
+        @include s-lg {
+            padding: 1rem 4rem ;
+            align-items: flex-start;
+            grid-area: 1 / 2 / 3 / 3;
+            justify-items: start;
+        }
+
+        input {
+            border: none;
+        }
+
+        button {
+            box-shadow: 0 0.2rem 0.2rem rgba($color-primary-1, 0.1);
+        }
+    }
+}
+
+.footer {
+    padding: 6.5rem 2.5rem 4.8rem;
+    background-color: $color-primary-1;
+
+    @include s-lg {
+        padding: 10.5rem 2.5rem 8rem;
+    }
+
+    &__container {
+        margin: auto;
+        display: grid;
+        grid-template-rows: repeat(4, auto);
+        gap: 4.5rem;
+
+        @include s-sm {
+            max-width: $container-sm;
+        }
+
+        @include s-lg {
+            max-width: $container-xlg;
+            display: grid;
+            grid: auto auto / 33% 40% 1fr;
+            gap: 2rem;
+            text-align: left;
+        }
+    }
+
+    &__logo {
+        height: 5rem;
+        background-color: $color-white;
+        mask: url('../images/logo.svg') no-repeat left top / contain;
+
+        @include s-lg {
+            grid-area: 1 / 1 / 2 / -1;
+        }
+    }
+
+    &__contact {
+        margin-bottom: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        font-style: normal;
+    }
+
+    &__link,
+    &__phone,
+    &__email {
+        color: $color-white;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &__phone,
+    &__email {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        &::before {
+            display: block;
+            width: 2rem;
+            height: 1.6rem;
+            background-image: url('../images/icon-phone.svg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            content: '';
+        }
+    }
+
+    &__email::before {
+        width: 2rem;
+        height: 1.4rem;
+        background-image: url('../images/icon-email.svg');
+    }
+
+    &__menu {
+        display: grid;
+        gap: 1.5rem;
+        list-style: none;
+
+        @include s-sm {
+            grid: repeat(4, 1fr) / repeat(2, 1fr);
+            grid-auto-flow: column;
+        }
+
+        & li:nth-child(5) {
+            margin-top: 3rem;
+
+            @include s-sm {
+                margin: 0;
+            }
+        }
+    }
+
+    &__social {
+        display: flex;
+        justify-content: center;
+
+        @include s-lg {
+            justify-content: flex-start;
+        }
+    }
+}
